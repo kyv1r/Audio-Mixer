@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400.2439, y: 247.07317}
+  m_AnchoredPosition: {x: 325, y: 203}
   m_SizeDelta: {x: 119.8915, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49699377
@@ -174,7 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24300002, guid: 82c20c739b8dd5943bc5f5c396078644, type: 2}
-  _audioStrings: 2
+  _soundSlider:
+  - {fileID: 1670190580}
+  - {fileID: 1973757027}
+  - {fileID: 1476743892}
 --- !u!114 &49699378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +225,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &50256229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,8 +2679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: -980117821464593841, guid: 82c20c739b8dd5943bc5f5c396078644, type: 2}
-  _audioStrings: 1
-  _muterSound: {fileID: 49699377}
 --- !u!1 &1508994668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,8 +3364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24300002, guid: 82c20c739b8dd5943bc5f5c396078644, type: 2}
-  _audioStrings: 2
-  _muterSound: {fileID: 49699377}
 --- !u!1 &1670678957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3751,8 +3750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: -2994664331531651904, guid: 82c20c739b8dd5943bc5f5c396078644, type: 2}
-  _audioStrings: 0
-  _muterSound: {fileID: 49699377}
 --- !u!1 &2049500595
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 9010be9dc5cfe8e4e9847f4c081c57e4
-    name: BackgroundMuisc
+    name: BackgroundMusic
   - guid: 275f89e03ea1dbe4b9f8e66893ea8cb4
     name: Master
   - guid: 081795f2617634849bf1aab93438cdc9
