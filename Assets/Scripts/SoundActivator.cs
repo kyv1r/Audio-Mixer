@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class SwitchSound : MonoBehaviour
+public class SoundActivator : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioMixerGroup _audioMixer;

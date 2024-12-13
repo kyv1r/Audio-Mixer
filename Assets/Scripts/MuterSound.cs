@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -6,12 +7,13 @@ using UnityEngine.UI;
 public class MuterSound : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup _audioMixer;
-    [SerializeField] private AudioStrings _audioStrings;
+    [SerializeField] private List<Slider> _soundSlider;
 
     private float _minVolume = -80;
-    private float _maxVolume = 0;
-
+    private float _savedVolume = 0;
     private Toggle _toggle;
+
+    public bool ToggleState => _toggle.isOn;
 
     private void Awake()
     {
@@ -20,21 +22,42 @@ public class MuterSound : MonoBehaviour
 
     private void OnEnable()
     {
-        _toggle.onValueChanged.AddListener(Mute);
+        _toggle.onValueChanged.AddListener(OnMuteToggleChanged);
     }
 
     private void OnDisable()
     {
-        _toggle.onValueChanged.RemoveAllListeners();
+        _toggle.onValueChanged.RemoveListener(OnMuteToggleChanged);
+        SyncToggleWithVolume();
     }
 
-    private void Mute(bool enabled)
+    private void OnMuteToggleChanged(bool isMuted)
     {
-        _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), enabled ? _maxVolume : _minVolume);
+        if (isMuted)
+        {
+            foreach (var slider in _soundSlider)
+                slider.enabled = false;
+
+            if (_audioMixer.audioMixer.GetFloat(_audioMixer.name, out float currentVolume))
+                _savedVolume = currentVolume;
+
+            _audioMixer.audioMixer.SetFloat(_audioMixer.name, _minVolume);
+        }
+        else
+        {
+            foreach(var slider in _soundSlider)
+                slider.enabled = true;
+
+            _audioMixer.audioMixer.SetFloat(_audioMixer.name, _savedVolume);
+        }
     }
 
-    public void SetToggleState(bool state)
+    private void SyncToggleWithVolume()
     {
-        _toggle.isOn = state;
+        if (_audioMixer.audioMixer.GetFloat(_audioMixer.name, out float currentVolume))
+        {
+            _toggle.isOn = currentVolume > _minVolume;
+        }
     }
+
 }
