@@ -3,11 +3,13 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class SoundManager : MonoBehaviour
+public class MasterVolume : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup _audioMixer;
     [SerializeField] private AudioStrings _audioStrings;
     [SerializeField] private MuterSound _muterSound;
+
+    private float linearVolumeMultiplier = 20;
 
     private Slider _slider;
 
@@ -19,7 +21,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         if(_audioMixer.audioMixer.GetFloat(_audioStrings.ToString(), out float volume))
-            _slider.value = Mathf.Log10(volume) * 20;
+            _slider.value = Mathf.Log10(volume) * linearVolumeMultiplier;
     }
 
     private void OnEnable()
@@ -34,7 +36,7 @@ public class SoundManager : MonoBehaviour
 
     private void ChangeVolume(float volume)
     {
-        _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), Mathf.Log10(volume) * 20);
+        _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), Mathf.Log10(volume) * linearVolumeMultiplier);
 
         if(volume > 0.01f)
         {

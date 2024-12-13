@@ -30,10 +30,7 @@ public class MuterSound : MonoBehaviour
 
     private void Mute(bool enabled)
     {
-        if (enabled)
-            _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), _maxVolume);
-        else
-            _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), _minVolume);
+        _audioMixer.audioMixer.SetFloat(_audioStrings.ToString(), enabled ? _maxVolume : _minVolume);
     }
 
     public void SetToggleState(bool state)
